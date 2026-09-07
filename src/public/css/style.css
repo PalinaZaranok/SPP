@@ -1,0 +1,340 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f4f8;
+    color: #1a202c;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #2b6cb0;
+    border-bottom: 4px solid #bee3f8;
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+h1::before {
+    content: "📋";
+    font-size: 2rem;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #2d3748;
+    margin: 1.5rem 0 1rem 0;
+}
+
+
+.filter-form {
+    background: white;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-form label {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.filter-form select {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: white;
+    font-size: 1rem;
+    cursor: pointer;
+    outline: none;
+    transition: border 0.2s;
+}
+
+.filter-form select:hover,
+.filter-form select:focus {
+    border-color: #3182ce;
+}
+
+
+.add-task {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: flex-end;
+}
+
+.add-task input,
+.add-task select {
+    flex: 1 1 150px;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    font-size: 1rem;
+    background: #f7fafc;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.add-task input:focus,
+.add-task select:focus {
+    border-color: #3182ce;
+    box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.2);
+    background: white;
+    outline: none;
+}
+
+.add-task button {
+    background: #3182ce;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.8rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.add-task button:hover {
+    background: #2b6cb0;
+}
+
+.add-task button:active {
+    transform: scale(0.97);
+}
+
+
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+}
+
+.task-item {
+    background: white;
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-left: 6px solid #a0aec0;
+}
+
+.task-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.task-item.status-new {
+    border-left-color: #f6ad55;
+}
+.task-item.status-in-progress {
+    border-left-color: #4299e1;
+}
+.task-item.status-done {
+    border-left-color: #48bb78;
+}
+
+.task-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2d3748;
+    word-break: break-word;
+}
+
+.task-description {
+    color: #4a5568;
+    font-size: 0.95rem;
+    margin: 0.2rem 0;
+}
+
+.task-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    font-size: 0.85rem;
+    color: #718096;
+    margin: 0.3rem 0;
+}
+
+.task-meta .status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    background: #edf2f7;
+    color: #2d3748;
+}
+
+.task-meta .status-badge.new {
+    background: #fefcbf;
+    color: #975a16;
+}
+.task-meta .status-badge.in-progress {
+    background: #bee3f8;
+    color: #2a69ac;
+}
+.task-meta .status-badge.done {
+    background: #c6f6d5;
+    color: #276749;
+}
+
+.task-file {
+    margin: 0.3rem 0;
+}
+
+.task-file a {
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px dashed #bee3f8;
+}
+
+.task-file a:hover {
+    color: #2b6cb0;
+    border-bottom-style: solid;
+}
+
+.task-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.8rem;
+    align-items: center;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 0.8rem;
+}
+
+.task-actions form {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.task-actions select {
+    padding: 0.3rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+    font-size: 0.85rem;
+    background: #f7fafc;
+}
+
+.task-actions button {
+    background: #edf2f7;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    color: #4a5568;
+}
+
+.task-actions button:hover {
+    background: #e2e8f0;
+}
+
+.task-actions .btn-delete {
+    color: #e53e3e;
+}
+.task-actions .btn-delete:hover {
+    background: #fed7d7;
+}
+
+.task-actions .btn-upload {
+    background: #e6fffa;
+    color: #319795;
+}
+.task-actions .btn-upload:hover {
+    background: #b2f5ea;
+}
+
+.upload-form {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+}
+
+.upload-form input[type="file"] {
+    font-size: 0.75rem;
+    max-width: 120px;
+}
+
+.upload-form button {
+    background: #e6fffa;
+    color: #319795;
+}
+
+.upload-form button:hover {
+    background: #b2f5ea;
+}
+
+
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    .add-task {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-task input,
+    .add-task select,
+    .add-task button {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .task-list {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-actions form {
+        justify-content: stretch;
+    }
+
+    .upload-form input[type="file"] {
+        max-width: 100%;
+    }
+}

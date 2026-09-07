@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Список задач</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <h1>Мои задачи</h1>
+
+  <form method="GET" action="/">
+    <label>Фильтр по статусу:
+      <select name="status" onchange="this.form.submit()">
+        <option value="all" <%= statusFilter === 'all' ? 'selected' : '' %>>Все</option>
+        <% statuses.forEach(s => { %>
+          <option value="<%= s %>" <%= statusFilter === s ? 'selected' : '' %>><%= s %></option>
+        <% }) %>
+      </select>
+    </label>
+  </form>
+
+  <h2>Добавить задачу</h2>
+  <form method="POST" action="/tasks/add">
+    <input type="text" name="title" placeholder="Название" required>
+    <input type="text" name="description" placeholder="Описание">
+    <select name="status">
+      <option value="new">Новая</option>
+      <option value="in-progress">В процессе</option>
+      <option value="done">Выполнена</option>
+    </select>
+    <input type="date" name="dueDate" required>
+    <button type="submit">Добавить</button>
+  </form>
+
+  <ul>
+    <% tasks.forEach(task => { %>
+      <li>
+        <strong><%= task.title %></strong>
+        <p><%= task.description %></p>
+        <p>Статус: <%= task.status %> | Срок: <%= task.dueDate %></p>
+        <% if (task.file) { %>
+          <a href="/uploads/<%= task.file %>">Прикреплённый файл</a>
+        <% } %>
+
+        <form method="POST" action="/tasks/update/<%= task.id %>" style="display:inline;">
+          <select name="status">
+            <option value="new" <%= task.status === 'new' ? 'selected' : '' %>>Новая</option>
+            <option value="in-progress" <%= task.status === 'in-progress' ? 'selected' : '' %>>В процессе</option>
+            <option value="done" <%= task.status === 'done' ? 'selected' : '' %>>Выполнена</option>
+          </select>
+          <button type="submit">Обновить статус</button>
+        </form>
+
+        <form method="POST" action="/tasks/delete/<%= task.id %>" style="display:inline;">
+          <button type="submit" onclick="return confirm('Удалить?')">Удалить</button>
+        </form>
+
+        <form method="POST" action="/tasks/upload/<%= task.id %>" enctype="multipart/form-data" style="display:inline;">
+          <input type="file" name="file" required>
+          <button type="submit">Прикрепить файл</button>
+        </form>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
